@@ -1,12 +1,9 @@
 package aplicacao;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.Date;
 
-import bd.BD;
-import bd.BDExcecao;
 import modelo.entidades.Departamento;
+import modelo.entidades.Vendedor;
 
 public class Programa {
 
@@ -14,7 +11,8 @@ public class Programa {
 	
 		Departamento departamento = new Departamento(1, "Livros");
 		
-		System.out.println(departamento);
+		Vendedor vendedor = new Vendedor(21, "Fabio", "fabio@gmail.com", new Date(), 3000.0, departamento);
+		System.out.println(vendedor);
 		
 	}
 }
