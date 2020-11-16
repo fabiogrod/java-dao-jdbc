@@ -3,7 +3,6 @@ package modelo.entidades;
 import java.io.Serializable;
 import java.util.Date;
 
-
 public class Vendedor implements Serializable {
 		
 	private static final long serialVersionUID = 1L;
@@ -11,19 +10,19 @@ public class Vendedor implements Serializable {
 	private Integer id;
 	private String nome;
 	private String email;
-	private Date dataNascimento;
+	private Date dataAniversario;
 	private Double salarioBase;
 	
 	private Departamento departamento;
 	
 	public Vendedor () {}
 
-	public Vendedor(Integer id, String nome, String email, Date dataNascimento, Double salarioBase,
+	public Vendedor(Integer id, String nome, String email, Date dataAniversario, Double salarioBase,
 			Departamento departamento) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.dataNascimento = dataNascimento;
+		this.dataAniversario = dataAniversario;
 		this.salarioBase = salarioBase;
 		this.departamento = departamento;
 	}
@@ -52,12 +51,12 @@ public class Vendedor implements Serializable {
 		this.email = email;
 	}
 
-	public Date getDataNascimento() {
-		return dataNascimento;
+	public Date getDataAniversario() {
+		return dataAniversario;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setDataAniversario(Date dataAniversario) {
+		this.dataAniversario = dataAniversario;
 	}
 
 	public Double getSalarioBase() {
@@ -103,7 +102,7 @@ public class Vendedor implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Vendedor [id=" + id + ", nome=" + nome + ", email=" + email + ", dataNascimento=" + dataNascimento
+		return "Vendedor [id=" + id + ", nome=" + nome + ", email=" + email + ", dataAniversario=" + dataAniversario
 				+ ", salarioBase=" + salarioBase + ", departamento=" + departamento + "]";
 	}
 }
