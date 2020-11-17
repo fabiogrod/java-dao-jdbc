@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,9 +25,40 @@ public class VendedorDaoJDBC implements VendedorDao{
 	}
 
 	@Override
-	public void insere(Vendedor Vendedor) {
-		// TODO Auto-generated method stub
+	public void insere(Vendedor vendedor) {
+		PreparedStatement pst = null;
 		
+		try
+		{
+			pst = con.prepareStatement("INSERT INTO vendedor (Nome, Email, DataAniversario, SalarioBase, IdDepartamento) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS );
+			
+			pst.setString(1, vendedor.getNome() );
+			pst.setString(2, vendedor.getEmail() );
+			pst.setDate(3, new java.sql.Date(vendedor.getDataAniversario().getTime()));
+			pst.setDouble(4, vendedor.getSalarioBase() );
+			pst.setObject(5, vendedor.getDepartamento().getId() );
+			
+			int linhasInseridas = pst.executeUpdate();
+			
+			if (linhasInseridas > 0) {
+				ResultSet rs = pst.getGeneratedKeys();
+				
+				if(rs.next() ) {
+					int id = rs.getInt(1);
+					vendedor.setId(id);
+				}
+				BD.fechaResultSet(rs);
+			}
+			else {
+				throw new BDExcecao("Erro inesperado! Nehuma linha afetada! ");
+			}
+		}
+		catch(SQLException e) {
+			throw new BDExcecao(e.getMessage());
+		}
+		finally {
+			BD.fechaStatement(pst);
+		}
 	}
 
 	@Override
