@@ -14,6 +14,7 @@ public class Programa {
 		
 		VendedorDao vendedorDao = FabricaDao.gerarVendedorDao();
 		
+		System.out.println("=== TESTE #1: vendedor pesquisarId ===");		
 		Vendedor vendedor = vendedorDao.pesquisarId(3);
 		
 		System.out.println(vendedor);
