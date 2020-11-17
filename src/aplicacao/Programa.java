@@ -51,5 +51,13 @@ public class Programa {
 		vendedorDao.insere(novoVendedor);
 		
 		System.out.println("Dados gravados. Novo Id = " + novoVendedor.getId() );		
+		
+		System.out.println("\n=== TESTE #5: vendedor atualiza ===");
+		
+		vendedor = vendedorDao.pesquisarId(1);
+		vendedor.setNome("Vladmir Rodrigues");
+		
+		vendedorDao.atualiza(vendedor);
+		System.out.println("Atualização realizada.");
 	}
 }
