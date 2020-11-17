@@ -1,7 +1,10 @@
 package aplicacao;
 
+import java.util.List;
+
 import modelo.dao.FabricaDao;
 import modelo.dao.VendedorDao;
+import modelo.entidades.Departamento;
 import modelo.entidades.Vendedor;
 
 public class Programa {
@@ -18,6 +21,14 @@ public class Programa {
 		Vendedor vendedor = vendedorDao.pesquisarId(3);
 		
 		System.out.println(vendedor);
+		
+		System.out.println("\n=== TESTE #2: vendedor pesquisarId ===");
+		Departamento departamento = new Departamento(2, null);
+		List<Vendedor> lista = vendedorDao.pesquisarDepartamento(departamento);
+		
+		for(Vendedor v : lista) {
+			System.out.println(v);
+		}
 		
 	}
 }

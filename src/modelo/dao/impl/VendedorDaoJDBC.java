@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import bd.BD;
 import bd.BDExcecao;
@@ -88,6 +91,49 @@ public class VendedorDaoJDBC implements VendedorDao{
 	public List<Vendedor> pesquisar() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Vendedor> pesquisarDepartamento(Departamento departamento) {
+		
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try {
+			pst = con.prepareStatement("SELECT vendedor.*, departamento.Nome AS DepNome FROM vendedor INNER JOIN departamento ON vendedor.IdDepartamento = departamento.Id WHERE IdDepartamento = ? ORDER BY Nome");
+			pst.setInt(1, departamento.getId());
+			rs = pst.executeQuery();
+			
+//			while (rs.next()) {
+//				System.out.println(rs.getString("Nome"));
+//			}
+			
+			List<Vendedor> lista = new ArrayList<>();
+			
+			Map<Integer, Departamento> map = new HashMap<>();
+			
+			while (rs.next()) {
+				
+				Departamento dep = map.get(rs.getInt("IdDepartamento"));
+				
+				if (dep == null) {
+					dep = instanciarDepartamento(rs);
+					map.put(rs.getInt("IdDepartamento"), dep);
+				}
+				
+				Vendedor vendedor = instanciarVendedor(rs, dep);
+				
+				lista.add(vendedor);
+			}
+			return lista;
+		}
+		catch(SQLException e) {
+			throw new BDExcecao(e.getMessage());
+		}
+		finally {
+			BD.fechaStatement(pst);
+			BD.fechaResultSet(rs);
+		}
 	}
 	
 
