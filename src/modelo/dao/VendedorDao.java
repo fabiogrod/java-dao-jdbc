@@ -13,6 +13,5 @@ void insere(Vendedor Vendedor);
 	void deletaId(Integer id);	
 	Vendedor pesquisarId(Integer id);	
 	List<Vendedor> pesquisar();
-	List<Vendedor> pesquisarDepartamento(Departamento departamento);
-	
+	List<Vendedor> pesquisarDepartamento(Departamento departamento);	
 }

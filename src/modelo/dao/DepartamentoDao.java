@@ -15,4 +15,5 @@ public interface DepartamentoDao {
 	Departamento pesquisarId(Integer id);
 	
 	List<Departamento> pesquisar();
+	List<Departamento> pesquisarDepartamento(Departamento departamento);
 }

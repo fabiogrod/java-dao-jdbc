@@ -96,7 +96,7 @@ public class VendedorDaoJDBC implements VendedorDao{
 			
 			pst.setInt(1, id);
 			
-			int linhas = pst.executeUpdate();
+			/*int linhas =*/ pst.executeUpdate();
 			
 //			if (linhas == 0) {
 //				throw new BDExcecao("Número informado não foi encontrado.");
