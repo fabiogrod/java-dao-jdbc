@@ -22,9 +22,17 @@ public class Programa {
 		
 		System.out.println(vendedor);
 		
-		System.out.println("\n=== TESTE #2: vendedor pesquisarId ===");
+		System.out.println("\n=== TESTE #2: vendedor pesquisarDepartamento ===");
 		Departamento departamento = new Departamento(2, null);
 		List<Vendedor> lista = vendedorDao.pesquisarDepartamento(departamento);
+		
+		for(Vendedor v : lista) {
+			System.out.println(v);
+		}
+		
+		System.out.println("\n=== TESTE #3: vendedor pesquisar ===");
+		
+		lista = vendedorDao.pesquisar();
 		
 		for(Vendedor v : lista) {
 			System.out.println(v);
